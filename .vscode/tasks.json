@@ -1,0 +1,153 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Android (Debug)",
+      "type": "shell",
+      "command": ".\\gradlew.bat :app:androidApp:assembleDebug",
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      }
+    },
+    {
+      "label": "Build Android (Release)",
+      "type": "shell",
+      "command": ".\\gradlew.bat :app:androidApp:assembleRelease",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Install & Run (Debug APK)",
+      "type": "shell",
+      "command": ".\\gradlew.bat :app:androidApp:installDebug",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      }
+    },
+    {
+      "label": "Build Core Module",
+      "type": "shell",
+      "command": ".\\gradlew.bat :core:build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Build Shared Module",
+      "type": "shell",
+      "command": ".\\gradlew.bat :app:shared:build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Build Server Module",
+      "type": "shell",
+      "command": ".\\gradlew.bat :server:build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Build All Modules",
+      "type": "shell",
+      "command": ".\\gradlew.bat build",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Run Ktor Server",
+      "type": "shell",
+      "command": ".\\gradlew.bat :server:run",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false
+      },
+    },
+    {
+      "label": "Run All Tests",
+      "type": "shell",
+      "command": ".\\gradlew.bat allTests",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Clean Build Cache",
+      "type": "shell",
+      "command": ".\\gradlew.bat clean && .\\gradlew.bat :app:androidApp:assembleDebug --no-configuration-cache",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+    },
+    {
+      "label": "Gradle Sync",
+      "type": "shell",
+      "command": ".\\gradlew.bat tasks --refresh-dependencies",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      }
+    }
+  ]
+}

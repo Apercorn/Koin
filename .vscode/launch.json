@@ -1,0 +1,21 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Build & Install Android",
+			"type": "java",
+			"request": "launch",
+			"preLaunchTask": "Install & Run (Debug APK)",
+			"mainClass": "",
+			"projectRoot": "${workspaceFolder}"
+		},
+		{
+			"name": "Run Ktor Server",
+			"type": "java",
+			"request": "launch",
+			"preLaunchTask": "Run Ktor Server",
+			"mainClass": "dev.apercorn.koin.ApplicationKt",
+			"projectRoot": "${workspaceFolder}"
+		}
+	]
+}

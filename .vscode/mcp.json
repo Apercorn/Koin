@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"devtools-android": {
+			"url": "http://localhost:12872/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}
