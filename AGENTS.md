@@ -26,7 +26,7 @@ Verify before claiming done: build and compile the entire app and fix any errors
 - **`when` expressions** must be exhaustive — no `else` if all cases are covered by the sealed type.
 - **Imports**: all at the top of the file. Never qualify symbols inline at the call site (e.g. `kotlinx.datetime.LocalDate` is imported, then used as `LocalDate`).
 - **IDs**: `String`, generated via `uuid4()`. Never auto-increment integers.
-- **Comments**: minimal. Code explains itself. `// computed` on computed `val` properties. `// TODO: implement X` for deferred work. No em dashes.
+- **Comments**: minimal. Code explains itself. `// computed` on computed `val` properties. `// TODO: implement X` for deferred work. No em dashes. Add comments to composable UIs to mark where different parts of the UI are
 - **KDoc**: domain model classes only — not on Room entities.
 
 ## Architecture

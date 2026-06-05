@@ -61,7 +61,7 @@ class AccountsViewModel(
 				type = type,
 				currency = currency,
 				balance = 1234567L,
-				iconName = "account_balance", // Default icon
+				iconName = "building-bank", // Default icon
 				colorHex = "#7C4DFF" // Default brand color
 			)
 			accountRepository.save(account)
