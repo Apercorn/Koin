@@ -1,9 +1,9 @@
 package dev.apercorn.koin.di
 
-import dev.apercorn.koin.ui.accounts.AccountsViewModel
-import dev.apercorn.koin.ui.budgets.BudgetsViewModel
-import dev.apercorn.koin.ui.overview.OverviewViewModel
-import dev.apercorn.koin.ui.transactions.TransactionViewModel
+import dev.apercorn.koin.ui.screens.accounts.AccountsViewModel
+import dev.apercorn.koin.ui.screens.budgets.BudgetsViewModel
+import dev.apercorn.koin.ui.screens.overview.OverviewViewModel
+import dev.apercorn.koin.ui.screens.transactions.TransactionViewModel
 import org.koin.dsl.module
 
 val screenModelModule = module {

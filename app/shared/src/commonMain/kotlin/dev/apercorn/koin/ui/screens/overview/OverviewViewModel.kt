@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.overview
+package dev.apercorn.koin.ui.screens.overview
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope

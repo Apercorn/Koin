@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.settings
+package dev.apercorn.koin.ui.screens.settings
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.search
+package dev.apercorn.koin.ui.screens.search
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

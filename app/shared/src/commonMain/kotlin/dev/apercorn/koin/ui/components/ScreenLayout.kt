@@ -3,6 +3,7 @@ package dev.apercorn.koin.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,10 +17,42 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 /**
- * A reusable top bar with a title and action buttons.
+ * Layout boilerplate for screens
  */
 @Composable
-fun KoinTopBar(
+fun ScreenLayout(
+	modifier: Modifier = Modifier,
+	topBar: @Composable () -> Unit = { TopBar(title = "Screen") },
+	isLoading: Boolean = false,
+	loadingContent: @Composable () -> Unit = {
+		Box(
+			modifier = Modifier.fillMaxSize(),
+			contentAlignment = Alignment.Center
+		) {
+			CircularProgressIndicator()
+		}
+	},
+	content: @Composable ColumnScope.() -> Unit
+) {
+	Column(
+		modifier = Modifier
+			.fillMaxSize()
+			.padding(horizontal = 20.dp)
+	) {
+		topBar()
+
+		Spacer(modifier = Modifier.height(16.dp))
+
+		if (isLoading) {
+			loadingContent()
+		} else {
+			content()
+		}
+	}
+}
+
+@Composable
+fun TopBar(
 	title: String,
 	modifier: Modifier = Modifier,
 	actions: List<@Composable () -> Unit> = emptyList()
@@ -27,7 +60,7 @@ fun KoinTopBar(
 	Row(
 		modifier = modifier
 			.fillMaxWidth()
-			.padding(horizontal = 16.dp, vertical = 8.dp)
+			.padding(vertical = 8.dp)
 			.heightIn(min = 56.dp),
 		verticalAlignment = Alignment.CenterVertically,
 		horizontalArrangement = Arrangement.SpaceBetween

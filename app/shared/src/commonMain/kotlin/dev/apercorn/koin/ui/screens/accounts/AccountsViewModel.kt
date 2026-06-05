@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.accounts
+package dev.apercorn.koin.ui.screens.accounts
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 data class AccountsState(
 	val accounts: List<AccountWithBalance> = emptyList(),
+	val totalBalance: Long = 0L,
+	val currency: String = "USD",
 	val isLoading: Boolean = true
 )
 
@@ -29,6 +31,7 @@ class AccountsViewModel(
 
 	init {
 		loadAccounts()
+		loadTotalBalance()
 	}
 
 	private fun loadAccounts() {
@@ -42,6 +45,14 @@ class AccountsViewModel(
 		}
 	}
 
+	private fun loadTotalBalance() {
+		screenModelScope.launch {
+			transactionRepository.getTotalBalance().collect { total ->
+				_state.update { it.copy(totalBalance = total) }
+			}
+		}
+	}
+
 	fun addAccount(name: String, type: AccountType, currency: String = "USD") {
 		screenModelScope.launch {
 			val account = Account(
@@ -49,7 +60,7 @@ class AccountsViewModel(
 				name = name,
 				type = type,
 				currency = currency,
-				balance = 0L,
+				balance = 1234567L,
 				iconName = "account_balance", // Default icon
 				colorHex = "#7C4DFF" // Default brand color
 			)

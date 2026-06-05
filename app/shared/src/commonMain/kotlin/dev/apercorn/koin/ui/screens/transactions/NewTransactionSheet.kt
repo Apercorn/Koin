@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.transactions
+package dev.apercorn.koin.ui.screens.transactions
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

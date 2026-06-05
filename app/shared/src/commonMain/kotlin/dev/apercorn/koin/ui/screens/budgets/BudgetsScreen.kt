@@ -1,4 +1,4 @@
-package dev.apercorn.koin.ui.budgets
+package dev.apercorn.koin.ui.screens.budgets
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

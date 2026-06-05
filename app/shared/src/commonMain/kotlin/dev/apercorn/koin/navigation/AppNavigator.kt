@@ -23,11 +23,11 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import dev.apercorn.koin.ui.accounts.AccountsScreen
-import dev.apercorn.koin.ui.overview.OverviewScreen
-import dev.apercorn.koin.ui.search.SearchScreen
-import dev.apercorn.koin.ui.settings.SettingsScreen
-import dev.apercorn.koin.ui.transactions.TransactionScreen
+import dev.apercorn.koin.ui.screens.accounts.AccountsScreen
+import dev.apercorn.koin.ui.screens.overview.OverviewScreen
+import dev.apercorn.koin.ui.screens.search.SearchScreen
+import dev.apercorn.koin.ui.screens.settings.SettingsScreen
+import dev.apercorn.koin.ui.screens.transactions.TransactionScreen
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import koin.app.shared.generated.resources.*
