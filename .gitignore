@@ -21,3 +21,4 @@ node_modules/
 .vscode/
 !.vscode/tasks.json
 !.vscode/launch.json
+!.vscode/mcp.json
