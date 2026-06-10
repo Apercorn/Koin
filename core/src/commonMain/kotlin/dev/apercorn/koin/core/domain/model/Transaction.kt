@@ -11,20 +11,28 @@ import kotlinx.serialization.Serializable
 sealed interface Transaction {
 	/** Unique identifier for the transaction */
 	val id: String
+
 	/** ID of the account this transaction belongs to */
 	val accountId: String
+
 	/** ID of the category */
 	val categoryId: String?
+
 	/** ID of the counterparty */
 	val counterpartyId: String?
+
 	/** Transaction amount in cents/smallest currency unit (positive for income, negative for expense) */
 	val amount: Long
+
 	/** ISO currency code for the transaction */
 	val currency: String
+
 	/** Type of transaction (INCOME, EXPENSE, TRANSFER) */
 	val type: TransactionType
+
 	/** Date when the transaction occurred */
 	val date: LocalDate
+
 	/** Optional note or description for the transaction */
 	val note: String?
 

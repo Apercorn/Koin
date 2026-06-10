@@ -1,11 +1,7 @@
 package dev.apercorn.koin.core.di
 
 import dev.apercorn.koin.core.data.database.AppDatabase
-import dev.apercorn.koin.core.data.database.daos.AccountDao
-import dev.apercorn.koin.core.data.database.daos.BudgetDao
-import dev.apercorn.koin.core.data.database.daos.CategoryDao
-import dev.apercorn.koin.core.data.database.daos.RecurringDao
-import dev.apercorn.koin.core.data.database.daos.TransactionDao
+import dev.apercorn.koin.core.data.database.daos.*
 import org.koin.dsl.module
 
 val databaseModule = module {
