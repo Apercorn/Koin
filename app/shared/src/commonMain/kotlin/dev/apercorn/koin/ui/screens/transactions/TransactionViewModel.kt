@@ -2,9 +2,7 @@ package dev.apercorn.koin.ui.screens.transactions
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import dev.apercorn.koin.core.data.repository.AccountRepository
-import dev.apercorn.koin.core.data.repository.CategoryRepository
-import dev.apercorn.koin.core.data.repository.TransactionRepository
+import dev.apercorn.koin.core.data.repository.*
 import dev.apercorn.koin.core.domain.model.Transaction
 import dev.apercorn.koin.core.domain.model.TransactionType
 import kotlinx.coroutines.flow.*

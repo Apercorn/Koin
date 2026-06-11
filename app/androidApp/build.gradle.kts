@@ -1,3 +1,8 @@
+import org.gradle.kotlin.dsl.android
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.libs
+import org.gradle.kotlin.dsl.projects
+import org.jetbrains.compose.ComposePlugin.CommonComponentsDependencies.resources
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {

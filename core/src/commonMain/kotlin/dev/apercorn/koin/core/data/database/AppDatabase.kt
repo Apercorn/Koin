@@ -1,23 +1,10 @@
 package dev.apercorn.koin.core.data.database
 
-import androidx.room.ConstructedBy
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import androidx.room.RoomDatabaseConstructor
-import androidx.room.TypeConverters
+import androidx.room.*
 import dev.apercorn.koin.core.data.database.converters.Converters
-import dev.apercorn.koin.core.data.database.daos.AccountDao
-import dev.apercorn.koin.core.data.database.daos.BudgetDao
-import dev.apercorn.koin.core.data.database.daos.CategoryDao
-import dev.apercorn.koin.core.data.database.daos.RecurringDao
-import dev.apercorn.koin.core.data.database.daos.TransactionDao
-import dev.apercorn.koin.core.data.database.entities.AccountEntity
-import dev.apercorn.koin.core.data.database.entities.BudgetEntity
-import dev.apercorn.koin.core.data.database.entities.CategoryEntity
-import dev.apercorn.koin.core.data.database.entities.CounterpartyEntity
-import dev.apercorn.koin.core.data.database.entities.GoalEntity
-import dev.apercorn.koin.core.data.database.entities.RecurringEntity
-import dev.apercorn.koin.core.data.database.entities.TransactionEntity
+import dev.apercorn.koin.core.data.database.daos.*
+import dev.apercorn.koin.core.data.database.entities.*
+import dev.apercorn.koin.core.domain.SeedCategories
 
 @Database(
 	entities = [
@@ -42,4 +29,14 @@ abstract class AppDatabase : RoomDatabase() {
 	abstract fun recurringDao(): RecurringDao
 }
 
-expect object AppDatabaseCtor : RoomDatabaseConstructor<AppDatabase>
+@Suppress("NO_ACTUAL_FOR_EXPECT")
+expect object AppDatabaseCtor : RoomDatabaseConstructor<AppDatabase> {
+	override fun initialize(): AppDatabase
+}
+
+suspend fun seedDefaultCategories(database: AppDatabase) {
+	val dao = database.categoryDao()
+	if (dao.count() == 0) {
+		dao.upsertAll(SeedCategories.defaults)
+	}
+}

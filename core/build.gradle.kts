@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.libs
+import org.gradle.kotlin.dsl.sourceSets
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -62,7 +65,6 @@ kotlin {
 }
 
 dependencies {
-	add("kspCommonMainMetadata", libs.room.compiler)
 	add("kspAndroid", libs.room.compiler)
 	add("kspIosArm64", libs.room.compiler)
 	add("kspIosSimulatorArm64", libs.room.compiler)

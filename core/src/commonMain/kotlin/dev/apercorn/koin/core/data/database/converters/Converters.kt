@@ -5,7 +5,6 @@ import dev.apercorn.koin.core.domain.model.RecurringSchedule
 import dev.apercorn.koin.core.domain.model.Transaction
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 // Configure Json
