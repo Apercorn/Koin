@@ -36,12 +36,23 @@ class AccountsViewModel(
 
 	private fun loadAccounts() {
 		screenModelScope.launch {
-			accountRepository.getAllAccounts().collect { accounts ->
-				val withBalances = accounts.map { account ->
-					AccountWithBalance(account = account, balance = 0L)
+			accountRepository.getAllAccounts()
+				.flatMapLatest { accounts ->
+					if (accounts.isEmpty()) {
+						flowOf(emptyList())
+					} else {
+						combine(
+							accounts.map { account ->
+								transactionRepository.getBalanceForAccount(account.id).map { balance ->
+									AccountWithBalance(account = account, balance = balance)
+								}
+							}
+						) { it.toList() }
+					}
 				}
-				_state.update { it.copy(accounts = withBalances, isLoading = false) }
-			}
+				.collect { withBalances ->
+					_state.update { it.copy(accounts = withBalances, isLoading = false) }
+				}
 		}
 	}
 
@@ -53,16 +64,25 @@ class AccountsViewModel(
 		}
 	}
 
-	fun addAccount(name: String, type: AccountType, currency: String = "USD") {
+	fun addAccount(
+		name: String,
+		description: String?,
+		type: AccountType,
+		currency: String,
+		initialBalanceCents: Long,
+		iconName: String,
+		colorHex: String
+	) {
 		screenModelScope.launch {
 			val account = Account(
 				id = com.benasher44.uuid.uuid4().toString(),
 				name = name,
+				description = description,
 				type = type,
 				currency = currency,
-				balance = 1234567L,
-				iconName = "building-bank", // Default icon
-				colorHex = "#7C4DFF" // Default brand color
+				balance = initialBalanceCents,
+				iconName = iconName,
+				colorHex = colorHex
 			)
 			accountRepository.save(account)
 		}
