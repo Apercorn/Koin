@@ -70,7 +70,7 @@ class AccountRepositoryImpl(
 
 	private fun Account.toEntity(): AccountEntity {
 		val now = System.now().toEpochMilliseconds()
-		
+
 		return AccountEntity(
 			id = id,
 			name = name,

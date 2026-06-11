@@ -19,7 +19,7 @@ object KoinColors {
 	// Background
 	val DarkBackground = Color(0xFF090909)
 	val DarkSurface = Color(0xFF151515)
-	val DarkSurfaceVariant = Color(0xFF323232)
+	val DarkSurfaceVariant = Color(0xFF1D1D1E)
 	val LightBackground = Color(0xFFF5F5F5)
 	val LightSurface = Color(0xFFFFFFFF)
 	val LightSurfaceVariant = Color(0xFFE8E8E8)

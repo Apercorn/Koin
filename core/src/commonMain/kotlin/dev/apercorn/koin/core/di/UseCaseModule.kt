@@ -1,11 +1,6 @@
 package dev.apercorn.koin.core.di
 
-import dev.apercorn.koin.core.domain.usecase.AddTransactionUseCase
-import dev.apercorn.koin.core.domain.usecase.CheckBudgetStatusUseCase
-import dev.apercorn.koin.core.domain.usecase.DeleteAccountUseCase
-import dev.apercorn.koin.core.domain.usecase.GetAccountsUseCase
-import dev.apercorn.koin.core.domain.usecase.GetSpendingByPeriodUseCase
-import dev.apercorn.koin.core.domain.usecase.ProcessRecurringUseCase
+import dev.apercorn.koin.core.domain.usecase.*
 import org.koin.dsl.module
 
 val useCaseModule = module {

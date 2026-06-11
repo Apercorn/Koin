@@ -1,11 +1,6 @@
 package dev.apercorn.koin.core.data.database.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import dev.apercorn.koin.core.data.database.entities.AccountEntity
 import kotlinx.coroutines.flow.Flow
 

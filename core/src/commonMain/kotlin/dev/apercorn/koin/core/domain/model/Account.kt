@@ -7,7 +7,7 @@ data class Account(
 	val name: String,
 	/** Optional description or notes about the account */
 	val description: String? = null,
-	/** Type of account (CASH, CHECKING, SAVINGS) */
+	/** Type of account (Cash, Checkings, Savings) */
 	val type: AccountType,
 	/** ISO currency code for the account */
 	val currency: String,
@@ -22,16 +22,16 @@ data class Account(
 )
 
 enum class AccountType {
-	CASH,
-	CHECKING,
-	SAVINGS;
+	Cash,
+	Checkings,
+	Savings;
 
 	companion object {
 		fun fromString(value: String): AccountType = when (value.uppercase()) {
-			"CASH" -> CASH
-			"CHECKING" -> CHECKING
-			"SAVINGS" -> SAVINGS
-			else -> CHECKING
+			"Cash" -> Cash
+			"Checkings" -> Checkings
+			"Savings" -> Savings
+			else -> Checkings
 		}
 
 		fun toString(type: AccountType): String = type.name
