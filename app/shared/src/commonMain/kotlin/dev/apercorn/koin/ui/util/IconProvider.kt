@@ -2,10 +2,9 @@ package dev.apercorn.koin.ui.util
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import compose.icons.TablerIcons
 import compose.icons.AllIcons
+import compose.icons.TablerIcons
 import compose.icons.tablericons.*
-import dev.apercorn.koin.ui.theme.KoinColors
 
 
 object IconProvider {
@@ -104,7 +103,7 @@ object IconProvider {
 			?: defaultIcon
 	}
 
-	fun parseColor(hex: String, fallback: Color = KoinColors.Blue): Color {
+	fun parseColor(hex: String, fallback: Color = Color(0xFF26547B)): Color {
 		val cleanHex = hex.removePrefix("#")
 		return try {
 			when (cleanHex.length) {
