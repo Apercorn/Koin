@@ -1,20 +1,27 @@
-package dev.apercorn.koin.ui.components
+package dev.apercorn.koin.ui.components.layout
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.LocalRippleConfiguration
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+
+/**
+ * Describes a single action button in the top bar.
+ */
+data class ActionItem(
+	val icon: ImageVector,
+	val contentDescription: String,
+	val onClick: () -> Unit
+)
 
 /**
  * Layout boilerplate for screens
@@ -55,8 +62,10 @@ fun ScreenLayout(
 fun TopBar(
 	title: String,
 	modifier: Modifier = Modifier,
-	actions: List<@Composable () -> Unit> = emptyList()
+	actions: List<ActionItem> = emptyList()
 ) {
+	val haptic = LocalHapticFeedback.current
+
 	Row(
 		modifier = modifier
 			.fillMaxWidth()
@@ -85,7 +94,17 @@ fun TopBar(
 						verticalAlignment = Alignment.CenterVertically
 					) {
 						actions.forEach { action ->
-							action()
+							IconButton(
+								onClick = {
+									haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+									action.onClick()
+								}
+							) {
+								Icon(
+									imageVector = action.icon,
+									contentDescription = action.contentDescription
+								)
+							}
 						}
 					}
 				}

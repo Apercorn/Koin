@@ -59,6 +59,7 @@ class AccountRepositoryImpl(
 		return Account(
 			id = id,
 			name = name,
+			description = description,
 			type = AccountType.fromString(type),
 			currency = currency,
 			balance = balance,
@@ -74,6 +75,7 @@ class AccountRepositoryImpl(
 		return AccountEntity(
 			id = id,
 			name = name,
+			description = description,
 			type = AccountType.toString(type),
 			currency = currency,
 			iconName = iconName,

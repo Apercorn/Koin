@@ -3,6 +3,7 @@ package dev.apercorn.koin.navigation
 import androidx.compose.animation.*
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,27 +11,22 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.*
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.tab.CurrentTab
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabNavigator
-import cafe.adriel.voyager.navigator.tab.TabOptions
+import cafe.adriel.voyager.navigator.tab.*
 import dev.apercorn.koin.ui.screens.accounts.AccountsScreen
 import dev.apercorn.koin.ui.screens.overview.OverviewScreen
 import dev.apercorn.koin.ui.screens.search.SearchScreen
 import dev.apercorn.koin.ui.screens.settings.SettingsScreen
 import dev.apercorn.koin.ui.screens.transactions.TransactionScreen
+import koin.app.shared.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
-import koin.app.shared.generated.resources.*
 
 private val PillHeight = 55.dp
 
@@ -70,12 +66,30 @@ fun AppNavigator() {
 				}
 			}
 		) { paddingValues ->
+			// Top padding for status bar + bottom inset so the last item in
+			// any scrollable screen stops above the floating nav bar.
 			Box(
 				modifier = Modifier
 					.fillMaxSize()
-					.padding(paddingValues)
+					.padding(top = paddingValues.calculateTopPadding())
 			) {
-				CurrentTab() // Renders the content of the selected tab
+				CurrentTab()
+
+				// Global fade + blur overlay — heavy fade only near the bottom
+				Box(
+					modifier = Modifier
+						.fillMaxWidth()
+						.height(140.dp)
+						.align(Alignment.BottomCenter)
+						.background(
+							brush = Brush.verticalGradient(
+								0.0f to Color.Transparent,
+								0.3f to MaterialTheme.colorScheme.background.copy(alpha = 0.5f),
+								1.0f to MaterialTheme.colorScheme.background
+							)
+						)
+						.blur(12.dp)
+				)
 			}
 		}
 	}
@@ -92,7 +106,7 @@ private fun FloatingBottomBar(
 		modifier = modifier
 			.height(PillHeight)
 			.clip(RoundedCornerShape(50)),
-		color = MaterialTheme.colorScheme.surface,
+		color = MaterialTheme.colorScheme.surfaceVariant,
 		tonalElevation = 0.dp,
 		shadowElevation = 12.dp
 	) {
@@ -162,8 +176,8 @@ private fun RowScope.FloatingTabItem(
 			tabNavigator.current = tab
 		},
 		shape = RoundedCornerShape(50),
-		color = if (selected) MaterialTheme.colorScheme.surfaceVariant else Color.Transparent,
-		contentColor = if (selected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
+		color = if (selected) MaterialTheme.colorScheme.primaryContainer else Color.Transparent,
+		contentColor = if (selected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSecondaryContainer
 	) {
 		Row(
 			modifier = Modifier.padding(horizontal = 15.dp, vertical = 10.dp),
@@ -183,8 +197,8 @@ private fun RowScope.FloatingTabItem(
 			) {
 				Text(
 					text = label,
-					style = MaterialTheme.typography.labelMedium,
-					fontWeight = FontWeight.SemiBold,
+					style = MaterialTheme.typography.labelSmall,
+					color = MaterialTheme.colorScheme.onSurface,
 					maxLines = 1,
 					overflow = TextOverflow.Ellipsis,
 					modifier = Modifier.padding(start = 8.dp)
@@ -212,16 +226,14 @@ private fun DetachedSearchButton(
 			.scale(scale),
 		onClick = onClick,
 		shape = CircleShape,
-		color = MaterialTheme.colorScheme.surface,
-		contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-		tonalElevation = 0.dp,
-		shadowElevation = 12.dp
+		color = MaterialTheme.colorScheme.surfaceVariant,
+		contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
 	) {
 		Box(contentAlignment = Alignment.Center) {
 			Icon(
 				painter = painterResource(Res.drawable.ic_search),
 				contentDescription = "Search",
-				modifier = Modifier.size(28.dp)
+				modifier = Modifier.size(24.dp)
 			)
 		}
 	}
